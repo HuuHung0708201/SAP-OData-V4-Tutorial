@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices
+      m:DataServiceVersion="2.0"
+      xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+
+    <Schema Namespace="Demo"
+        xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+
+      <!-- ========== Entity Types ========== -->
+      <EntityType Name="Person">
+        <Key>
+          <PropertyRef Name="UserName"/>
+        </Key>
+        <Property Name="UserName" Type="Edm.String" Nullable="false"/>
+        <Property Name="FirstName" Type="Edm.String"/>
+        <Property Name="LastName" Type="Edm.String"/>
+        <Property Name="MiddleName" Type="Edm.String"/>
+        <Property Name="Gender" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PersonGender"
+			  Nullable="false"/> <!-- Enum đổi thành String -->
+        <Property Name="Age" Type="Edm.Int64"/>
+        <Property Name="Emails" Type="Edm.String" m:FC_KeepInContent="true"/>
+      </EntityType>
+
+      <EntityType Name="Airline">
+        <Key>
+          <PropertyRef Name="AirlineCode"/>
+        </Key>
+        <Property Name="AirlineCode" Type="Edm.String" Nullable="false"/>
+        <Property Name="Name" Type="Edm.String"/>
+      </EntityType>
+
+      <EntityType Name="Airport">
+        <Key>
+          <PropertyRef Name="IcaoCode"/>
+        </Key>
+        <Property Name="Name" Type="Edm.String"/>
+        <Property Name="IcaoCode" Type="Edm.String" Nullable="false"/>
+        <Property Name="IataCode" Type="Edm.String"/>
+        <Property Name="Location" Type="Edm.String"/> <!-- ComplexType đổi thành String -->
+      </EntityType>
+
+      <EntityType Name="Trip">
+        <Key>
+          <PropertyRef Name="TripId"/>
+        </Key>
+        <Property Name="TripId" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="ShareId" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="Name" Type="Edm.String"/>
+        <Property Name="Budget" Type="Edm.Single"/>
+        <Property Name="Description" Type="Edm.String"/>
+        <Property Name="Tags" Type="Edm.String"/>
+        <Property Name="StartsAt" Type="Edm.DateTime"/>
+        <Property Name="EndsAt" Type="Edm.DateTime"/>
+      </EntityType>
+
+      <EntityType Name="PlanItem">
+        <Key>
+          <PropertyRef Name="PlanItemId"/>
+        </Key>
+        <Property Name="PlanItemId" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="ConfirmationCode" Type="Edm.String"/>
+        <Property Name="StartsAt" Type="Edm.DateTime"/>
+        <Property Name="EndsAt" Type="Edm.DateTime"/>
+        <Property Name="Duration" Type="Edm.String"/>
+      </EntityType>
+
+      <EntityType Name="Event" BaseType="Demo.PlanItem">
+        <Property Name="OccursAt" Type="Edm.String"/>
+        <Property Name="Description" Type="Edm.String"/>
+      </EntityType>
+
+      <EntityType Name="PublicTransportation" BaseType="Demo.PlanItem">
+        <Property Name="SeatNumber" Type="Edm.String"/>
+      </EntityType>
+
+      <EntityType Name="Flight" BaseType="Demo.PublicTransportation">
+        <Property Name="FlightNumber" Type="Edm.String"/>
+        <Property Name="Airline" Type="Edm.String"/>
+        <Property Name="From" Type="Edm.String"/>
+        <Property Name="To" Type="Edm.String"/>
+      </EntityType>
+
+      <EntityType Name="Employee" BaseType="Demo.Person">
+        <Property Name="Cost" Type="Edm.Int32"/>
+      </EntityType>
+
+      <EntityType Name="Manager" BaseType="Demo.Person">
+        <Property Name="Budget" Type="Edm.Int32"/>
+        <Property Name="BossOffice" Type="Edm.String"/>
+      </EntityType>
+
+      <!-- ========== Entity Container ========== -->
+      <EntityContainer Name="Container" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="People" EntityType="Demo.Person"/>
+        <EntitySet Name="Airlines" EntityType="Demo.Airline"/>
+        <EntitySet Name="Airports" EntityType="Demo.Airport"/>
+        <EntitySet Name="Trips" EntityType="Demo.Trip"/>
+        <EntitySet Name="PlanItems" EntityType="Demo.PlanItem"/>
+        <EntitySet Name="Events" EntityType="Demo.Event"/>
+        <EntitySet Name="Flights" EntityType="Demo.Flight"/>
+        <EntitySet Name="Employees" EntityType="Demo.Employee"/>
+        <EntitySet Name="Managers" EntityType="Demo.Manager"/>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

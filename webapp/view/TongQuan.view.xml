@@ -1,0 +1,21 @@
+<mvc:View
+    controllerName="base.controller.TongQuan"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    >
+    <Page title="{i18n>TextTitle}" showNavButton="true"
+		navButtonPress=".onNavBack">
+        <content>
+            <VBox>
+                <Text text="Xin chào hãy bắt đầu với {i18n>TextTitle}" />
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
+
+<!-- 
+-   Trong hướng dẫn này, chúng ta sẽ khám phá cách các tính năng của OData V4 có thể được sử dụng trong SAPUI5. Chúng ta sẽ viết một ứng dụng nhỏ sử dụng dữ liệu từ một dịch vụ OData V4 để hiểu cách truy cập, chỉnh sửa, tổng hợp và lọc dữ liệu trong một mô hình OData V4.
+-   OData là một giao thức tiêu chuẩn để tạo và truy cập dữ liệu bằng cách sử dụng các HTTP và REST API đơn giản cho các thao tác tạo (create), đọc (read), cập nhật (update) và xóa (delete) – gọi tắt là CRUD.
+-   Chúng ta bắt đầu với một ứng dụng ban đầu chỉ đơn giản là lấy dữ liệu từ một dịch vụ OData V4 và hiển thị nó dưới dạng một danh sách đơn giản.
+ -->

@@ -1,0 +1,226 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "base",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.3",
+      "toolsId": "07e8f8da-fa2b-4d51-a48f-9c4ae2eecb72"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri1": "/V2/Northwind/Northwind.svc/",
+        "uri": "/localService/mainService/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "static/favicon.ico",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "fullWidth": false
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.14",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "handleValidation": true,
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "base.i18n.i18n",
+          "supportedLocales": ["en", ""],
+          "fallbackLocale": ""
+        }
+      },
+      "": {
+        "dataSource": "mainService",        
+        "preload": true,
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultCountMode": "Inline",
+          "handleValidation": true,
+          "groupId": "$auto"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "base.view",
+        "async": true,
+        "viewPath": "base.view",
+        "bypassed": {
+          "target": "notFound"
+        }
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": ["TargetMain"]
+        },
+        {
+          "name": "RouteTongQuan",
+          "pattern": "TongQuan",
+          "target": ["TongQuan"]
+        },
+        {
+          "name": "RouteStep01",
+          "pattern": "Step01",
+          "target": ["Step01"]
+        },
+        {
+          "name": "RouteStep02",
+          "pattern": "Step02",
+          "target": ["Step02"]
+        },
+        {
+          "name": "RouteStep03",
+          "pattern": "Step03",
+          "target": ["Step03"]
+        },
+        {
+          "name": "RouteStep04",
+          "pattern": "Step04",
+          "target": ["Step04"]
+        },
+        {
+          "name": "RouteStep05",
+          "pattern": "Step05",
+          "target": ["Step05"]
+        },
+        {
+          "name": "RouteStep06",
+          "pattern": "Step06",
+          "target": ["Step06"]
+        },
+        {
+          "name": "RouteStep07",
+          "pattern": "Step07",
+          "target": ["Step07"]
+        },
+        {
+          "name": "RouteStep08",
+          "pattern": "Step08",
+          "target": ["Step08"]
+        },
+        {
+          "name": "RouteStep09",
+          "pattern": "Step09",
+          "target": ["Step09"]
+        },
+        {
+          "name": "RouteStep10",
+          "pattern": "Step10",
+          "target": ["Step10"]
+        },
+        {
+          "name": "RouteStep11",
+          "pattern": "Step11",
+          "target": ["Step11"]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "id": "Main",
+          "name": "Main"
+        },
+        "notFound": {
+          "viewId": "notFound",
+          "viewName": "NotFound",
+          "title": "{i18n>appTitle}"
+        },
+        "TongQuan" : {
+          "viewName": "TongQuan"
+        },
+        "Step01" : {
+          "viewName": "Step01"
+        },
+        "Step02" : {
+          "viewName": "Step02"
+        },
+        "Step03" : {
+          "viewName": "Step03"
+        },
+        "Step04" : {
+          "viewName": "Step04"
+        },
+        "Step05" : {
+          "viewName": "Step05"
+        },
+        "Step06" : {
+          "viewName": "Step06"
+        },
+        "Step07" : {
+          "viewName": "Step07"
+        },
+        "Step08" : {
+          "viewName": "Step08"
+        },
+        "Step09" : {
+          "viewName": "Step09"
+        },
+        "Step10" : {
+          "viewName": "Step10"
+        },
+        "Step11" : {
+          "viewName": "Step11"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "base.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

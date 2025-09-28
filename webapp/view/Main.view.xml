@@ -1,0 +1,34 @@
+<mvc:View
+    controllerName="base.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+>
+    <Page title="Trang chính">
+        <content>
+            <Link text="Link hướng dẫn" href="https://sapui5.hana.ondemand.com/#/topic/bcdbde6911bd4fc68fd435cf8e306ed0" target="_blank" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextTitle}" press=".onNavToDetail" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep01}" press=".onNavToDetail1" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep02}" press=".onNavToDetail2" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep03}" press=".onNavToDetail3" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep04}" press=".onNavToDetail4" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep05}" press=".onNavToDetail5" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep06}" press=".onNavToDetail6" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep07}" press=".onNavToDetail7" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep08}" press=".onNavToDetail8" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep09}" press=".onNavToDetail9" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep10}" press=".onNavToDetail10" class="sapUiMediumMargin sapMTextBold" />
+            <Link text="{i18n>TextStep11}" press=".onNavToDetail11" class="sapUiMediumMargin sapMTextBold" />
+        </content>
+    </Page>
+</mvc:View>
+
+
+<!-- 
+-   cái dấu . trước tên hàm có nghĩa là:
+    +   Đây là method của controller gắn với View hiện tại (tức controllerName="..." bạn khai báo ở đầu <mvc:View>).
+    +   Nếu bạn bỏ dấu . và viết press="onPress" → UI5 sẽ hiểu đây là global function (tồn tại trong window, ngoài controller). Điều này hầu như không bao giờ dùng trong app chuẩn.
+
+-   press=".onPress" → gọi method onPress trong controller của View.
+-   press="onPress" (không dấu .) → tìm hàm global onPress (không khuyến khích).
+ -->

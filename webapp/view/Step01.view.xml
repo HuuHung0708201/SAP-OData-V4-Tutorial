@@ -1,0 +1,60 @@
+<mvc:View
+	controllerName="base.controller.Step01"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+    <Shell>
+        <App busy="{appView>/busy}" class="sapUiSizeCompact">
+            <pages>
+                <Page title="{i18n>TextStep01}" showNavButton="true"
+		navButtonPress=".onNavBack">
+                    <content>
+                        <Table
+							id="peopleList"
+							growing="true"
+							growingThreshold="10"
+							items="{
+								path: '/People'
+							}">
+                            <columns>
+                                <Column id="userNameColumn">
+                                    <Text text="{i18n>userNameLabelText}"/>
+                                </Column>
+                                <Column id="firstNameColumn">
+                                    <Text text="{i18n>firstNameLabelText}"/>
+                                </Column>
+                                <Column id="lastNameColumn">
+                                    <Text text="{i18n>lastNameLabelText}"/>
+                                </Column>
+                                <Column id="ageColumn">
+                                    <Text text="{i18n>ageLabelText}"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{UserName}"/>
+                                    </cells>
+                                    <cells>
+                                        <Input value="{FirstName}"/>
+                                    </cells>
+                                    <cells>
+                                        <Input value="{LastName}"/>
+                                    </cells>
+                                    <cells>
+                                        <Input value="{Age}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
+
+<!-- 
+-   Ta bắt đầu bằng việc thiết lập một ứng dụng đơn giản, ứng dụng này tải dữ liệu từ một dịch vụ OData và hiển thị dữ liệu đó trong một bảng. Chúng ta sử dụng mock server để mô phỏng các yêu cầu gửi đến và phản hồi từ dịch vụ.
+-   Cấu trúc và mô hình dữ liệu được tạo trong bước này sẽ được sử dụng xuyên suốt trong hướng dẫn này để minh họa các tính năng của OData V4 trong SAPUI5.
+ -->

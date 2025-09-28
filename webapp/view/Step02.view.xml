@@ -1,0 +1,73 @@
+<mvc:View
+    controllerName="base.controller.Step02"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Shell>
+        <App busy="{appView>/busy}" class="sapUiSizeCompact">
+            <pages>
+                <Page title="{i18n>TextStep02}" showNavButton="true"
+                    navButtonPress=".onNavBack">
+                    <content>
+                        <Table
+                            id="peopleList"
+                            growing="true"
+                            growingThreshold="10"
+                            items="{ path: '/People' }">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <ToolbarSpacer/>
+                                        <Button
+                                            id="refreshUsersButton"
+                                            icon="sap-icon://refresh"
+                                            tooltip="{i18n>refreshButtonText}"
+                                            press=".onRefresh"
+                                        />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column id="userNameColumn">
+                                    <Text text="{i18n>userNameLabelText}"/>
+                                </Column>
+                                <Column id="firstNameColumn">
+                                    <Text text="{i18n>firstNameLabelText}"/>
+                                </Column>
+                                <Column id="lastNameColumn">
+                                    <Text text="{i18n>lastNameLabelText}"/>
+                                </Column>
+                                <Column id="ageColumn">
+                                    <Text text="{i18n>ageLabelText}"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{UserName}"/>
+                                        <Input value="{FirstName}"/>
+                                        <Input value="{LastName}"/>
+                                        <Input value="{Age}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
+
+<!-- 
+-   Trong bước này, chúng ta sẽ xem cách Table được ràng buộc với entity set People gửi yêu cầu dữ liệu ban đầu và cách dữ liệu có thể được làm mới. Chúng ta sử dụng tab Console trong công cụ phát triển của trình duyệt để theo dõi giao tiếp giữa trình duyệt và máy chủ. Chúng ta sẽ thấy cả yêu cầu ban đầu lẫn các yêu cầu làm mới dữ liệu.
+
+-   <HeaderToolbar> → <headerToolbar> (theo XML view SAPUI5).
+-   Bỏ <HeaderToolber> (sai chính tả).
+-   Gom tất cả <Input> vào một <cells> trong <ColumnListItem>.
+-   Kiểm tra import modules JS/TS nếu dùng HeaderToolbar hoặc OverflowToolbar.
+Điều này sẽ xóa lỗi ModuleError và giúp Table hiển thị đúng.
+
+-   <cells> là một danh sách các Control, tương ứng với các cột <Column> của Table.
+-   Nếu bạn viết nhiều <cells> trong cùng một <ColumnListItem>, SAPUI5 không biết map thế nào, dẫn tới lỗi hoặc không hiển thị đúng dữ liệu.
+ -->

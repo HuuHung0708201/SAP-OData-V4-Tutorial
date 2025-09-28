@@ -1,0 +1,99 @@
+<mvc:View
+    controllerName="base.controller.Step05"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Shell>
+        <App busy="{appView>/busy}" class="sapUiSizeCompact">
+            <pages>
+                <Page title="{i18n>TextStep05}" showNavButton="true"
+                    navButtonPress=".onNavBack">
+                    <content>
+                        <Table
+                            id="peopleList"
+                            growing="true"
+                            growingThreshold="10"
+                            items="{ path: '/People',
+                            parameters: {
+									$count: true
+								}
+                             }"
+                            
+                            >
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <ToolbarSpacer/>
+                                        <SearchField
+											id="searchField"
+											width="20%"
+											placeholder="{i18n>searchFieldPlaceholder}"
+											search=".onSearch"/>
+                                        <Button
+                                            id="refreshUsersButton"
+                                            icon="sap-icon://refresh"
+                                            tooltip="{i18n>refreshButtonText}"
+                                            press=".onRefresh"
+                                        />
+                                        <Button
+											id="sortUsersButton"
+											icon="sap-icon://sort"
+											tooltip="{i18n>sortButtonText}"
+											press="onSort"/>
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column id="userNameColumn">
+                                    <Text text="{i18n>userNameLabelText}"/>
+                                </Column>
+                                <Column id="firstNameColumn">
+                                    <Text text="{i18n>firstNameLabelText}"/>
+                                </Column>
+                                <Column id="lastNameColumn">
+                                    <Text text="{i18n>lastNameLabelText}"/>
+                                </Column>
+                                <Column id="ageColumn">
+                                    <Text text="{i18n>ageLabelText}"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{UserName}"/>
+                                        <Input value="{FirstName}"/>
+                                        <Input value="{LastName}"/>
+                                        <Input 
+                                            value="{Age}"
+                                            type="sap.ui.model.type.Integer"
+                                            constraints="{nullable: false, minimum: 0}"
+                                            change=".onAgeChange"
+/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
+<!-- 
+-   Trong bước này, chúng ta sẽ xem xét kỹ hơn về batch group. Batch group được sử dụng để gom nhiều yêu cầu thành một yêu cầu gửi lên server, nhằm cải thiện hiệu suất tổng thể.
+-   Một yêu cầu $batch sử dụng multipart MIME để gom nhiều yêu cầu vào thành một. Điều này khiến việc phân tích trở nên khó khăn khi xem yêu cầu trong công cụ phát triển trình duyệt.
+-   Để khắc phục vấn đề này, bạn có thể:
+-   Tạm thời chuyển group ID sang $direct bằng cách thay đổi mã nguồn hoặc thay đổi giá trị mặc định trong debugger.
+-   Sao chép phần liên quan của request hoặc response từ công cụ phát triển sang một trình soạn thảo và tự động định dạng lại thành JSON để phân tích.
+
+-   Chức năng của groupId: "$auto"
+-   Tự động gom batch requests
+-   Khi một request (GET, POST, PUT, DELETE…) được gửi với groupId: "$auto", SAPUI5 sẽ tự động gom tất cả các request cùng nhóm này vào một batch request gửi lên server.
+-   Điều này giúp giảm số lần gọi server, cải thiện hiệu suất.
+-   Xử lý tuần tự hoặc đồng thời
+-   Với $auto, UI5 quyết định thứ tự gửi các request trong nhóm.
+-   Các request không nhất thiết phải gửi ngay lập tức, mà có thể đợi các request khác cùng nhóm để gom chung batch.
+-   So với $direct
+-   $direct gửi ngay lập tức, không gom batch, từng request một.
+-   $auto cho phép UI5 tối ưu hóa bằng cách gom batch.
+ -->

@@ -1,0 +1,82 @@
+<mvc:View
+    controllerName="base.controller.Step03"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Shell>
+        <App busy="{appView>/busy}" class="sapUiSizeCompact">
+            <pages>
+                <Page title="{i18n>TextStep03}" showNavButton="true"
+                    navButtonPress=".onNavBack">
+                    <content>
+                        <Table
+                            id="peopleList"
+                            growing="true"
+                            growingThreshold="10"
+                            items="{ path: '/People' }">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <ToolbarSpacer/>
+                                        <Button
+                                            id="refreshUsersButton"
+                                            icon="sap-icon://refresh"
+                                            tooltip="{i18n>refreshButtonText}"
+                                            press=".onRefresh"
+                                        />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column id="userNameColumn">
+                                    <Text text="{i18n>userNameLabelText}"/>
+                                </Column>
+                                <Column id="firstNameColumn">
+                                    <Text text="{i18n>firstNameLabelText}"/>
+                                </Column>
+                                <Column id="lastNameColumn">
+                                    <Text text="{i18n>lastNameLabelText}"/>
+                                </Column>
+                                <Column id="ageColumn">
+                                    <Text text="{i18n>ageLabelText}"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{UserName}"/>
+                                        <Input value="{FirstName}"/>
+                                        <Input value="{LastName}"/>
+                                        <Input 
+    value="{Age}"
+    type="sap.ui.model.type.Integer"
+    constraints="{nullable: false, minimum: 0}"
+    change=".onAgeChange"
+/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
+
+<!-- 
+-   Trong bước này, chúng ta sử dụng tự động nhận diện kiểu dữ liệu của mô hình OData V4 để phân tích, kiểm tra và định dạng các giá trị nhập từ người dùng. Metadata của dịch vụ chứa thông tin kiểu dữ liệu cho các thuộc tính của từng thực thể.
+-   Chúng ta sẽ thấy cách các kiểu dữ liệu này được sử dụng để đảm bảo rằng dữ liệu nhập vào từ người dùng là hợp lệ và được định dạng đúng cách. 
+-   Mô hình OData V4 sử dụng thông tin này để tính toán kiểu dữ liệu tương ứng trong SAPUI5, bao gồm cả các ràng buộc, và gán kiểu này cho property binding của thuộc tính thực thể trong SAPUI5. Ví dụ, với <Input value="{Age}"/>, kiểu SAPUI5 Int64 được sử dụng, tương ứng với kiểu OData Edm.Int64.
+
+-   Thêm "handleValidation": true, vào cấu hình manifest.json → model OData V4 sẽ tự động kiểm tra tính hợp lệ của dữ liệu nhập vào.
+    +   tự động bật cơ chế xác thực dữ liệu phía client trước khi dữ liệu được gửi đến OData service. Cụ thể:
+-   Kiểm tra kiểu dữ liệu:
+    +   Model sẽ sử dụng thông tin kiểu dữ liệu từ metadata (ví dụ Edm.Int64, Edm.String) để xác thực giá trị mà người dùng nhập.
+-   Kiểm tra ràng buộc (constraints):
+    +   Nếu metadata định nghĩa ràng buộc, ví dụ: Nullable=false, MaxLength=10, model sẽ tự động phát hiện nếu dữ liệu không hợp lệ.
+-   Tự động hiển thị trạng thái lỗi:
+    +   Nếu dữ liệu không hợp lệ, UI5 sẽ đánh dấu control tương ứng là invalid, hiển thị thông báo lỗi (nếu có formatter/MessagePopover), mà không gửi request đến server.
+-   Tránh request không hợp lệ:
+    +   Bằng cách này, bạn giảm số lượng lỗi server trả về và cải thiện trải nghiệm người dùng.
+ -->
